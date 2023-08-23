@@ -4,7 +4,7 @@ const Users = require("../Controllers/user")
 const bcrypt = require("bcrypt");
 const nodemailer = require("nodemailer");
 const randomstring = require('randomstring');
-// const PASSWORD=process.env.PASSWORD 
+const PASSWORD=process.env.PASSWORD 
 
 //initalize the router
 const router=express.Router();
@@ -105,7 +105,7 @@ const sendResetEmail = (email, resetLink) => {
     service: 'gmail',
     auth: {
       user: 'smdburhan25@gmail.com',
-      pass: 'nrakeiqakeloirle',
+      pass: PASSWORD,
     },
   });
 
