@@ -41,7 +41,20 @@ router.post('/signup' , async (req, res) => {
     }
 
   })
-
+// getting all user data
+router.get("/all",async(req,res)=>{
+  try{
+    const usersdata=await Users.find({});
+    if(usersdata.length<=0){
+      res.status(400).json({data:"User Not Found"})
+      return
+    }
+     res.status(200).json({data:usersdata})
+  }catch (error) {
+    console.log(error)
+    res.send(500).json({data:"Internal Server Error"})
+ }
+})
 // existing user login
 router.post("/login",async(req,res)=>{
     try {
