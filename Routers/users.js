@@ -115,15 +115,19 @@ await user.save();
   // Define the sendResetEmail function
 const sendResetEmail = (email, resetLink) => {
   const transporter = nodemailer.createTransport({
-    service: 'gmail',
+    host:process.env.HOST,
+    service:process.env.SERVICE,
+    port:Number(process.env.EMAIL_PORT),
+    secure:Boolean(process.env.SECURE),
+    
     auth: {
-      user: 'smdburhan25@gmail.com',
+      user: process.env.USER,
       pass: PASSWORD,
     },
   });
 
   const mailOptions = {
-    from: 'smdburhan25@gmail.com',
+    from: process.env.USER,
     to: email,
     subject: 'Password Reset Link',
     html: ` <h1>Hello,</h1>
