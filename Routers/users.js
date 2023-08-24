@@ -104,11 +104,11 @@ router.post('/forgot-password', async (req, res) => {
      
     }
    const token=generateRandomString(20);
-//    console.log({token:token} );
+   console.log({token:token} );
 const randomStrings = token;
 user.restToken = randomStrings;
 await user.save();
-// console.log(user);
+console.log(user);
   // Send the reset password link to the user's email
   const resetLink = `https://resetpasswordflowmb.netlify.app/ChangePassword/${randomStrings}`; 
 
