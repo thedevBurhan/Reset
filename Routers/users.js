@@ -61,8 +61,8 @@ router.post("/login",async(req,res)=>{
         //is user available
         const user=await Users.findOne({email:req.body.email});
         if(!user){
-            res.status(404).json({data:"Invaild Email"})
-        }
+            res.status(404).json({data:{message:"User Not Found",result:user,statusCode:404}})
+        }else{
         //is password is valid
         const validPassword=await bcrypt.compare(
             req.body.password,
@@ -71,9 +71,9 @@ router.post("/login",async(req,res)=>{
         if(!validPassword){
             return res.status(400).json({data:{message:"Invalid Password",result:validPassword,statusCode:400}})
         }
-        
+      
         res.status(200).json({data:{message:"Sucessfully Logged In",result:validPassword,statusCode:200}})
-    } catch (error) {
+    }} catch (error) {
         console.log(error)
         res.send(500).json({data:"Internal Server Error"})
      
